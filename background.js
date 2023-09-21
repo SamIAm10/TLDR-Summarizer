@@ -66,9 +66,9 @@ function showSummaryModal(summary) {
     popupContainer.className = "summary-popup-container";
     popupContainer.innerHTML = `
     <div class="summary-popup">
-		<h2>Here's the TLDR:</h2>
-		<a class="close" href="#">&times;</a>
-		<div class="content">
+        <h2>Here's the TLDR:</h2>
+        <a class="close" href="#">&times;</a>
+        <div class="content">
             ${summary}
         </div>
     </div>

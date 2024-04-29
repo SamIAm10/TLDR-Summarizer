@@ -28,21 +28,23 @@ async function summarizeText(text, tabId) {
             "Authorization": `Bearer ${apiKey}`
         },
         body: JSON.stringify({
-            prompt: `Summarize the following text:\n${text}`,
             model: "gpt-3.5-turbo",
+            messages: [{
+                role: "user",
+                content: `Summarize the following text:\n${text}`
+            }],
             max_tokens: 50 // Determines the summary length
         })
     });
 
     const data = await response.json();
-    console.log(data); // For debugging
 
     let summary;
     if (data.error) {
         summary = `ChatGPT Error: ${data.error.message}`;
-    }
-    else {
-        summary = data.choices[0].text.trim();
+    } else {
+        const lastMessage = data.choices[0].message; 
+        summary = lastMessage.content.trim(); 
     }
 
     // Inject custom CSS into the active tab
